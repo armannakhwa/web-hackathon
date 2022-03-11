@@ -1,0 +1,18 @@
+table {
+  background-color: #008000;
+}
+tr:nth-child(even) {
+  background-color: #f0e68c;
+}
+
+body
+{
+  background-color: #98CC4B;
+}
+
+.done
+{
+  text-decoration: line-through;
+  display: none;
+  font-size: 20px;
+}

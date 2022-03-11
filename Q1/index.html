@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+  <script src="script.js"></script>
+  <title>Arman & Ved</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+</head>
+
+<body ng-app='toDoList' ng-controller='toDoListCtrl'>
+
+  <div class="container">
+    <h1 class="bg-danger text-white">Today's To Do List</h1>
+
+    <div class='input-form'>
+      <input type='text' class="form-control" ng-model='newTask' />
+      <button ng-click='addTask(newTask)' class="btn btn-primary m-2">Add new Task</button>
+    </div>
+    <table class="table table-borderless">
+      <thead>
+        <tr class="bg-danger">
+          <th scope="col">index</th>
+          <th scope="col">Tasks</th>
+          <th scope="col">Action</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+    </table>
+    <div ng-repeat='task in taskList'>
+      <table class="table table-borderless">
+
+        <tbody>
+          <tr>
+            <th scope="row">{{task.id}}</th>
+            <td>{{task.taskname}}</td>
+            <td> <input type='checkbox' ng-model='task.done' /></td>
+            <td><span ng-class='{done: !task.done}'>Yes</span><span ng-class='{done: task.done}'>No</span></td>
+          </tr>
+    </div>
+    </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

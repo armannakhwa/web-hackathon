@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+
+<head>
+    <script src="angular.min.js"></script>
+    <script src="script.js"></script>
+    <link href="styles.css" rel="stylesheet" />
+    <title>Arman & Ved Q3</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+</head>
+
+<body ng-controller="myController">
+    <h1 class="bg-danger text-white text-center">Te Students Result</h1>
+
+    <div class="container">
+
+        <div class='input-form'>
+            <input type='text' class="form-control" placeholder="Enter student roll no" ng-model='newTask' />
+            <button ng-click='get(newTask)' class="btn btn-primary m-2">Get info</button>
+        </div>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th ng-click="sortData('rollno')">Roll No <div ng-class="getSortClass('rollno')"></div>
+                    </th>
+                    <th ng-click="sortData('name')">Name <div ng-class="getSortClass('name')"></div>
+                    </th>
+                    <th ng-click="sortData('mcq')">MCQ <div ng-class="getSortClass('mcq')"></div>
+                    </th>
+                    <th ng-click="sortData('nmcq')">Non MCQ <div ng-class="getSortClass('nmcq')"></div>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="employee in employees | orderBy : sortCol : reverseSort">
+                    <td>{{employee.rollno }}</td>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.mcq}}</td>
+                    <td>{{employee.nmcq}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Arman & Ved Q2</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
+    <style>
+        html,
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .container {
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+
+        label {
+            background-color: brown;
+            padding: 5px;
+            color: white
+        }
+
+
+        b {
+            background-color: rgb(15, 11, 226);
+            padding: 5px;
+            color: white
+        }
+
+        input[type=text],
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            background-color: red;
+            padding: 12px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+</head>
+
+<body>
+    <h1 class="bg-danger text-white text-center">Text App</h1>
+    <div ng-app="app">
+        <div class="container">
+            <label>Below is Title case pipe implementation</label>
+            <p><input type="text" id="text-box" ng-model="txt1" /><br>
+                <div ng-controller="Ctrl">
+                    <h2>Result</h2>
+                    <b id="output"> </b>
+                </div>
+        </div>
+
+        <div class="container">
+
+            <label>Below is Reverse case pipe implementation</label>
+            <p><input type="text" ng-model="txt2" /><br>
+                <div ng-controller="Ctrl">
+                    <h2>Result</h2>
+                    <b>{{ txt2 | reverse }}</b>
+                </div>
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        var app = angular.module('app', []);
+        app.controller('Ctrl', function ($scope) {
+            $scope.msg = 'hello, world';
+        });
+
+
+        app.filter("reverse", function () {
+            return function (input) {
+                var result = "";
+                input = input || "";
+                for (var i = 0; i < input.length; i++) {
+                    result = input.charAt(i) + result;
+                }
+                return result;
+            };
+        });
+
+        // app.filter('titleCase', function () {
+        //     return function (input) {
+        //         input = input || '';
+        //         return input.replace(/\w\S*/g, function (txt) {
+        //             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        //         });
+        //     };
+        // })
+
+        const textBox = document.querySelector('#text-box');;
+        const output = document.querySelector('#output');
+        const regex = /(^|\b(?!(and?|at?|the|for|to|but|by|of)\b))\w+/g;
+
+        textBox.addEventListener("input", () =>
+            output.textContent = textBox.value.toLowerCase()
+            .replace(regex, s => s[0].toUpperCase() + s.slice(1))
+        );
+    </script>
+
+
+</body>
+
+</html>
